@@ -1,5 +1,3 @@
 main:
-  - title: Homeage
-    url: /talks/
   - title: Papers
     url: /publications/
