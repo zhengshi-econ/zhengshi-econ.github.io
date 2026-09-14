@@ -6,11 +6,9 @@ redirect_from:
   - /about/
   - /about.html
 ---
-**Welcome to my homepage!**
+**欢迎来到我的学术主页！**
 
-I am currently a postdoctoral researcher at the School of Economics and Management, Beijing Jiaotong University. Prior to this, I obtained my Ph.D. from Huazhong University of Science and Technology.
+我是一名来自华中科技大学经济学院的博士研究生。主要研究方向为数字经济，公司金融。
 
-My research interests include digital economics and network economics.
-
-You can reach me at: [zhengshiecon@163.com](mailto:guopenglieco@163.com)
+您可以通过电子邮箱联系我: [zhengshiecon@163.com](mailto:guopenglieco@163.com)
 
