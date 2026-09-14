@@ -239,12 +239,16 @@
           "type": "select",
           "required": true,
           "default": "manuscripts",
-          "description": "对应网站当前已有的分类。接入后台不会改变这些分类。",
+          "description": "工作论文显示在蓝色 Working Papers 区域，期刊论文显示在绿色 Publications 区域。未使用的分类不会显示。",
           "options": {
             "values": [
               {
+                "name": "working",
+                "label": "工作论文 / Working Papers"
+              },
+              {
                 "name": "manuscripts",
-                "label": "期刊论文 / Journal Articles"
+                "label": "期刊论文 / Publications"
               },
               {
                 "name": "conferences",
@@ -274,7 +278,8 @@
         {
           "name": "excerpt",
           "label": "列表中的简短摘要",
-          "type": "text"
+          "type": "text",
+          "description": "可选。正文没有填写时，这段文字会用作折叠摘要。"
         },
         {
           "name": "paperurl",
@@ -283,10 +288,22 @@
           "description": "填写 SSRN、期刊或公开 PDF 链接；在附件中上传 PDF 后可使用 /files/文件名.pdf。"
         },
         {
+          "name": "pdfurl",
+          "label": "PDF 链接（可选）",
+          "type": "string",
+          "description": "填写公开 PDF 完整网址，或 /files/文件名.pdf；填写后显示 PDF 按钮。"
+        },
+        {
+          "name": "ssrnurl",
+          "label": "SSRN 链接（可选）",
+          "type": "string",
+          "description": "填写 SSRN 论文页面的完整网址；填写后显示 SSRN 按钮。"
+        },
+        {
           "name": "citation",
           "label": "作者与引用信息",
           "type": "text",
-          "description": "填写作者、年份、题目与发表信息。"
+          "description": "填写作者姓名，按论文署名顺序排列；已有的完整引用信息也会保留显示。"
         },
         {
           "name": "body",
@@ -296,7 +313,8 @@
             "format": "markdown",
             "media": "images",
             "switcher": true
-          }
+          },
+          "description": "填写摘要；论文列表中点击 Abstract 后展开，也保留在论文详情页。"
         }
       ]
     },
@@ -363,3 +381,4 @@
     }
   ]
 }
+
