@@ -1,4 +1,7 @@
 ---
+layout: home-news
+news_lavender: ""
+news_gold: ""
 permalink: /
 title: About me
 author_profile: true
