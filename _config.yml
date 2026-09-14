@@ -1,23 +1,21 @@
 locale: en-US
 site_theme: default
-title: Your Name / Site Title
+title: My Academic Profile
 title_separator: "-"
-name: Your Name
-description: Your Name's academic portfolio
+name: Zheng Shi
+description: Zheng Shi's Academic Profile
 url: https://zhengshi-econ.github.io
 repository: zhengshi-econ/zhengshi-econ.github.io
 author:
   avatar: profile.png
   name: Zheng Shi
-  bio: Short biography for the left-hand sidebar
+  bio: Corporate Finance
   location: Wuhan China
-  employer: Red Brick University
+  employer: Huazhong University Of Science And Technology
   email: none@example.org
   googlescholar: https://scholar.google.com/citations?user=u2hYcSAAAAAJ&hl=en
-  orcid: https://orcid.org/yourorcidurl
-  pubmed: https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow
-  github: academicpages
-  bluesky: bsky.app
+  orcid: https://orcid.org/0000-0001-9562-8850
+  github: zhengshi-econ
 publication_category:
   books:
     title: Books
