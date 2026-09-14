@@ -7,17 +7,25 @@ author_profile: true
 
 <style>
 /* Only the publications page uses these classes. */
-.research-page { --paper-blue: #2b6cb0; --paper-green: #2f855a; }
+.research-page { --paper-publications: #7b2638; --paper-working: #c4b0df; }
 .research-page .research-intro { margin: 0 0 1.8rem; font-size: .92em; line-height: 1.7; }
 .research-page .research-group {
-  --paper-accent: var(--paper-blue);
+  --paper-accent: #64748b;
   margin: 0 0 1.8rem; padding: 1.3rem 1.5rem;
   border: 1px solid #e2e8f0; border-left: 5px solid var(--paper-accent);
   border-radius: 8px; background: #fcfdfe;
   box-shadow: 0 2px 6px rgba(0, 0, 0, .04);
   color: #494e52; overflow-wrap: anywhere;
 }
-.research-page .research-group--manuscripts { --paper-accent: var(--paper-green); }
+.research-page .research-group--manuscripts {
+  --paper-accent: var(--paper-publications);
+  border-color: #d9b9c0; border-left-color: var(--paper-publications); background: #fffdfd;
+}
+.research-page .research-group--working {
+  --paper-accent: #77529a;
+  border-color: #e4d8ef; border-left-color: var(--paper-working); background: #fcfaff;
+}
+.research-page .research-group--empty .research-heading { margin-bottom: 0; }
 .research-page .research-group--conferences { --paper-accent: #8054a3; }
 .research-page .research-group--books { --paper-accent: #94652b; }
 .research-page .research-group--other { --paper-accent: #64748b; }
@@ -77,8 +85,8 @@ author_profile: true
   {% endif %}
 
   {% assign papers = site.publications | sort: "date" | reverse %}
-  {% assign group_keys = "working,manuscripts,conferences,books,other" | split: "," %}
-  {% assign group_titles = "Working Papers,Publications,Conference Papers,Books,Other Research" | split: "," %}
+  {% assign group_keys = "manuscripts,working,conferences,books,other" | split: "," %}
+  {% assign group_titles = "Publications,Working Papers,Conference Papers,Books,Other Research" | split: "," %}
   {% for group_key in group_keys %}
     {% assign group_title = group_titles[forloop.index0] %}
     {% capture group_items %}
@@ -120,12 +128,13 @@ author_profile: true
       {% endfor %}
     {% endcapture %}
     {% assign group_items_trimmed = group_items | strip %}
-    {% if group_items_trimmed != "" %}
-      <section class="research-group research-group--{{ group_key }}" aria-labelledby="research-{{ group_key }}">
+    {% if group_items_trimmed != "" or group_key == "manuscripts" or group_key == "working" %}
+      <section class="research-group research-group--{{ group_key }}{% if group_items_trimmed == "" %} research-group--empty{% endif %}" aria-labelledby="research-{{ group_key }}">
         <h2 class="research-heading" id="research-{{ group_key }}">{{ group_title }}</h2>
-        <ol class="research-list">{{ group_items }}</ol>
+        {% if group_items_trimmed != "" %}<ol class="research-list">{{ group_items }}</ol>{% endif %}
       </section>
     {% endif %}
   {% endfor %}
 </div>
+
 
