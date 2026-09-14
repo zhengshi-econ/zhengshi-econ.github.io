@@ -1,15 +1,15 @@
 locale: en-US
 site_theme: default
-title: My Academic Profile
+title: Homepage
 title_separator: "-"
-name: Zheng Shi
+name: 石政
 description: Zheng Shi's Academic Profile
 url: https://zhengshi-econ.github.io
 repository: zhengshi-econ/zhengshi-econ.github.io
 author:
-  avatar: profile.png
+  avatar: sz.png
   name: Zheng Shi
-  bio: Corporate Finance
+  bio: 博士研究生
   location: Wuhan China
   employer: Huazhong University Of Science And Technology
   email: zhengshiecon@163.com
