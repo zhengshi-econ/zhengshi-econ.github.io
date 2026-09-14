@@ -1,13 +1,12 @@
 ---
-title: "Paper Title Number 5, with math $$E=mc^2$$"
+title: "Oil price–stock market nexus during the COVID-19 pandemic: evidence from
+  China"
 collection: publications
-category: conferences
+category: manuscripts
 permalink: /publication/2024-02-17-paper-title-number-4
-excerpt: 'This paper is about a famous math equation, $$E=mc^2$$'
-date: 2024-02-17
-venue: 'GitHub Journal of Bugs'
-paperurl: 'https://academicpages.github.io/files/paper3.pdf'
-citation: 'Your Name, You. (2024). &quot;Paper Title Number 3.&quot; <i>GitHub Journal of Bugs</i>. 1(3).'
+date: 2021-09-22
+venue: Energy Research Letters
+paperurl: https://erl.scholasticahq.com/article/28131-oil-price-stock-market-nexus-during-the-covid-19-pandemic-evidence-from-china
+citation: Zheng Shi, Dongmin Kong
 ---
-
-Using [MathJax](https://www.mathjax.org/) in the description is supported - $$E=mc^2$$ - however, the use must be mindful that the default delimiters are `$$...$$` and `\\[...\\]` which differs from the `$...$` that is typically expected.
+This study focuses on the relation between the fluctuation of international oil prices and China’s energy stock market during the COVID-19 pandemic, using a dynamic conditional correlation generalized autoregressive conditional heteroskedasticity model. We confirm the spillover effect of volatility between oil price returns and energy stock returns and determine that price leadership has been heavily influenced during the pandemic.
