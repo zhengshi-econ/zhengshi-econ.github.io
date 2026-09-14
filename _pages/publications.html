@@ -5,32 +5,127 @@ permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
+<style>
+/* Only the publications page uses these classes. */
+.research-page { --paper-blue: #2b6cb0; --paper-green: #2f855a; }
+.research-page .research-intro { margin: 0 0 1.8rem; font-size: .92em; line-height: 1.7; }
+.research-page .research-group {
+  --paper-accent: var(--paper-blue);
+  margin: 0 0 1.8rem; padding: 1.3rem 1.5rem;
+  border: 1px solid #e2e8f0; border-left: 5px solid var(--paper-accent);
+  border-radius: 8px; background: #fcfdfe;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .04);
+  color: #494e52; overflow-wrap: anywhere;
+}
+.research-page .research-group--manuscripts { --paper-accent: var(--paper-green); }
+.research-page .research-group--conferences { --paper-accent: #8054a3; }
+.research-page .research-group--books { --paper-accent: #94652b; }
+.research-page .research-group--other { --paper-accent: #64748b; }
+.research-page .research-heading {
+  margin: 0 0 1.25rem; padding: 0 0 .65rem;
+  border-bottom: 1px solid #e8edf2;
+  color: var(--paper-accent); font-size: 1.4em; font-weight: 750; line-height: 1.35;
+}
+.research-page .research-list { margin: 0; padding-left: 1.3em; }
+.research-page .research-paper { margin: 0; padding-left: .15em; line-height: 1.65; }
+.research-page .research-paper + .research-paper {
+  margin-top: 1.4rem; padding-top: 1.4rem; border-top: 1px solid #edf1f5;
+}
+.research-page .research-title {
+  margin: 0 0 .4rem; font-size: 1.04em; font-weight: 700; line-height: 1.5;
+}
+.research-page .research-title a { color: #41484e; text-decoration: none; }
+.research-page .research-title a:hover { color: var(--paper-accent); text-decoration: underline; }
+.research-page .research-authors { margin: 0 0 .25rem; font-style: italic; font-size: .94em; }
+.research-page .research-authors p { margin: 0; }
+.research-page .research-venue { margin: 0 0 .55rem; font-size: .94em; }
+.research-page .research-links { display: flex; flex-wrap: wrap; gap: .4rem .5rem; margin: .65rem 0; }
+.research-page .research-link {
+  display: inline-block; padding: .08rem .55rem; border: 1px solid #cedcea;
+  border-radius: 4px; color: #245d96; background: #f5f9fd;
+  font-size: .78em; font-weight: 600; line-height: 1.8; text-decoration: none;
+}
+.research-page .research-link:hover { background: #e9f2fb; border-color: #8caed0; }
+.research-page a:focus-visible, .research-page summary:focus-visible {
+  outline: 2px solid #2b6cb0; outline-offset: 3px;
+}
+.research-page .research-abstract { margin-top: .5rem; font-size: .9em; }
+.research-page .research-abstract summary {
+  display: list-item; width: fit-content; cursor: pointer; color: #536176; font-weight: 600;
+}
+.research-page .research-abstract[open] summary { margin-bottom: .6rem; }
+.research-page .research-abstract-text {
+  padding: .8rem 1rem; border-radius: 5px; background: #f0f4f8; line-height: 1.8;
+}
+.research-page .research-abstract-text > :first-child { margin-top: 0; }
+.research-page .research-abstract-text > :last-child { margin-bottom: 0; }
+.research-page .research-abstract-text p { font-size: 1em; }
+.research-page .research-abstract-text img { max-width: 100%; height: auto; }
+.research-page .research-abstract-text pre { overflow-x: auto; }
+@media (max-width: 600px) {
+  .research-page .research-group { padding: 1rem .8rem; border-left-width: 4px; }
+  .research-page .research-heading { font-size: 1.22em; }
+  .research-page .research-list { padding-left: 1.1em; }
+  .research-page .research-abstract-text { padding: .65rem .7rem; }
+}
+</style>
 
-{% include base_path %}
+<div class="research-page">
+  {% assign scholar_url = site.author.googlescholar | default: "" | strip %}
+  {% if scholar_url != "" %}
+    <p class="research-intro">You can also find my articles on <a href="{{ scholar_url | escape }}">Google Scholar</a>.</p>
+  {% endif %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
+  {% assign papers = site.publications | sort: "date" | reverse %}
+  {% assign group_keys = "working,manuscripts,conferences,books,other" | split: "," %}
+  {% assign group_titles = "Working Papers,Publications,Conference Papers,Books,Other Research" | split: "," %}
+  {% for group_key in group_keys %}
+    {% assign group_title = group_titles[forloop.index0] %}
+    {% capture group_items %}
+      {% for post in papers %}
+        {% assign paper_category = post.category | default: "other" %}
+        {% unless group_keys contains paper_category %}
+          {% assign paper_category = "other" %}
+        {% endunless %}
+        {% if paper_category == group_key %}
+          {% assign paper_url = post.paperurl | default: "" | strip %}
+          {% assign pdf_url = post.pdfurl | default: "" | strip %}
+          {% assign ssrn_url = post.ssrnurl | default: "" | strip %}
+          {% assign slides_url = post.slidesurl | default: "" | strip %}
+          {% assign bibtex_url = post.bibtexurl | default: "" | strip %}
+          {% assign authors = post.authors | default: post.citation | default: "" | strip %}
+          {% assign venue = post.venue | default: "" | strip %}
+          {% assign abstract = post.abstract | default: post.content | default: post.excerpt | default: "" | strip %}
+          <li class="research-paper">
+            <h3 class="research-title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+            {% if authors != "" %}<div class="research-authors">{{ authors | markdownify }}</div>{% endif %}
+            <p class="research-venue">{% if venue != "" %}<strong><em>{{ venue | escape }}</em></strong>{% if post.date %}, {% endif %}{% endif %}{% if post.date %}{{ post.date | date: "%Y" }}{% endif %}</p>
+            {% if paper_url != "" or pdf_url != "" or ssrn_url != "" or slides_url != "" or bibtex_url != "" %}
+              <div class="research-links" aria-label="Paper resources">
+                {% if paper_url != "" %}<a class="research-link" href="{{ paper_url | relative_url | escape }}">Paper</a>{% endif %}
+                {% if pdf_url != "" and pdf_url != paper_url %}<a class="research-link" href="{{ pdf_url | relative_url | escape }}">PDF</a>{% endif %}
+                {% if ssrn_url != "" and ssrn_url != paper_url %}<a class="research-link" href="{{ ssrn_url | relative_url | escape }}">SSRN</a>{% endif %}
+                {% if slides_url != "" %}<a class="research-link" href="{{ slides_url | relative_url | escape }}">Slides</a>{% endif %}
+                {% if bibtex_url != "" %}<a class="research-link" href="{{ bibtex_url | relative_url | escape }}">BibTeX</a>{% endif %}
+              </div>
+            {% endif %}
+            {% if abstract != "" %}
+              <details class="research-abstract">
+                <summary>Abstract</summary>
+                <div class="research-abstract-text">{{ abstract | markdownify }}</div>
+              </details>
+            {% endif %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    {% endcapture %}
+    {% assign group_items_trimmed = group_items | strip %}
+    {% if group_items_trimmed != "" %}
+      <section class="research-group research-group--{{ group_key }}" aria-labelledby="research-{{ group_key }}">
+        <h2 class="research-heading" id="research-{{ group_key }}">{{ group_title }}</h2>
+        <ol class="research-list">{{ group_items }}</ol>
+      </section>
+    {% endif %}
   {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
-
-
+</div>
 
