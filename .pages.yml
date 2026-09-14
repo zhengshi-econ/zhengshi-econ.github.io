@@ -179,6 +179,28 @@
             "media": "images",
             "switcher": true
           }
+        },
+        {
+          "name": "news_lavender",
+          "label": "News（淡紫色）",
+          "type": "rich-text",
+          "description": "留空时隐藏这条消息。可填写文字、加粗内容和链接，网页会自动添加 News: 前缀。",
+          "options": {
+            "format": "markdown",
+            "media": "images",
+            "switcher": true
+          }
+        },
+        {
+          "name": "news_gold",
+          "label": "News（淡金色）",
+          "type": "rich-text",
+          "description": "留空时隐藏这条消息。显示在淡紫色消息下方，可填写文字和链接。",
+          "options": {
+            "format": "markdown",
+            "media": "images",
+            "switcher": true
+          }
         }
       ]
     },
@@ -239,7 +261,7 @@
           "type": "select",
           "required": true,
           "default": "manuscripts",
-          "description": "工作论文显示在蓝色 Working Papers 区域，期刊论文显示在绿色 Publications 区域。未使用的分类不会显示。",
+          "description": "工作论文显示在淡蓝色 Working Papers 区域，期刊论文显示在暗红色 Publications 区域。两个栏目始终显示。",
           "options": {
             "values": [
               {
@@ -381,4 +403,3 @@
     }
   ]
 }
-
