@@ -1,7 +1,7 @@
 ---
 title: "Currency overvaluation and export product quality: Evidence from China"
 collection: publications
-category: manuscripts
+category: journal article
 permalink: /publication/2009-10-01-paper-title-number-1
 excerpt: Based on Chinese industrial firm information and international
   transaction data from 2003 to 2013, we construct a currency overvaluation
