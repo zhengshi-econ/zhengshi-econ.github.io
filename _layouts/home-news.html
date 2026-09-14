@@ -1,0 +1,48 @@
+---
+layout: single
+---
+
+{{ content }}
+
+{% assign news_lavender = page.news_lavender | default: "" | strip %}
+{% assign news_gold = page.news_gold | default: "" | strip %}
+
+{% if news_lavender != "" or news_gold != "" %}
+<style>
+.home-news { margin: 1.5rem 0 0; }
+.home-news .home-news__item {
+  padding: .85rem 1.1rem; margin: 0 0 .85rem;
+  border-left: 4px solid; border-radius: 5px;
+  color: #494e52; line-height: 1.75; overflow-wrap: anywhere;
+}
+.home-news .home-news__item--lavender { background: #f6f2fb; border-color: #ae92d2; }
+.home-news .home-news__item--gold { background: #fff9e9; border-color: #d7b969; }
+.home-news .home-news__item--lavender .home-news__label { color: #7853a2; }
+.home-news .home-news__item--gold .home-news__label { color: #8a681e; }
+.home-news .home-news__label { font-weight: 700; margin-right: .2em; }
+.home-news .home-news__text, .home-news .home-news__text > p:first-child { display: inline; }
+.home-news .home-news__text p { margin: .5rem 0 0; font-size: 1em; }
+.home-news .home-news__text > :last-child { margin-bottom: 0; }
+.home-news a { color: #2f6980; text-decoration: underline; }
+.home-news a:focus-visible { outline: 2px solid #2f6980; outline-offset: 3px; }
+.home-news img { max-width: 100%; height: auto; }
+.home-news pre { overflow-x: auto; }
+@media (max-width: 600px) {
+  .home-news .home-news__item { padding: .7rem .85rem; }
+}
+</style>
+<div class="home-news" role="region" aria-label="News">
+  {% if news_lavender != "" %}
+  <div class="home-news__item home-news__item--lavender">
+    <strong class="home-news__label">News:</strong>
+    <div class="home-news__text">{{ news_lavender | markdownify }}</div>
+  </div>
+  {% endif %}
+  {% if news_gold != "" %}
+  <div class="home-news__item home-news__item--gold">
+    <strong class="home-news__label">News:</strong>
+    <div class="home-news__text">{{ news_gold | markdownify }}</div>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
