@@ -1,0 +1,365 @@
+{
+  "settings": {
+    "content": {
+      "merge": true
+    }
+  },
+  "media": [
+    {
+      "name": "images",
+      "label": "照片与图片",
+      "input": "images",
+      "output": "/images",
+      "extensions": [
+        "jpg",
+        "jpeg",
+        "png",
+        "webp",
+        "gif"
+      ],
+      "rename": "safe"
+    },
+    {
+      "name": "files",
+      "label": "公开附件与 PDF",
+      "input": "files",
+      "output": "/files",
+      "extensions": [
+        "pdf"
+      ],
+      "rename": "safe"
+    }
+  ],
+  "content": [
+    {
+      "name": "profile",
+      "label": "个人资料与网站名称",
+      "type": "file",
+      "path": "_config.yml",
+      "format": "yaml",
+      "operations": {
+        "create": false,
+        "rename": false,
+        "delete": false
+      },
+      "fields": [
+        {
+          "name": "title",
+          "label": "网站标题",
+          "type": "string",
+          "required": true,
+          "description": "通常填写英文署名，显示在浏览器标题和网站顶部。"
+        },
+        {
+          "name": "name",
+          "label": "页脚署名",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "label": "网站简介",
+          "type": "text",
+          "description": "简短介绍你的身份和研究方向。"
+        },
+        {
+          "name": "author",
+          "label": "左侧个人资料",
+          "type": "object",
+          "fields": [
+            {
+              "name": "name",
+              "label": "显示姓名",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "bio",
+              "label": "身份与研究方向",
+              "type": "text"
+            },
+            {
+              "name": "employer",
+              "label": "学校或院系",
+              "type": "string"
+            },
+            {
+              "name": "location",
+              "label": "所在城市",
+              "type": "string"
+            },
+            {
+              "name": "email",
+              "label": "公开联系邮箱",
+              "type": "string"
+            },
+            {
+              "name": "avatar",
+              "label": "照片文件名",
+              "type": "string",
+              "description": "先在“照片与图片”上传，再填文件名，例如 photo.jpg；不要加 /images/。现有 profile.png 可保留。"
+            },
+            {
+              "name": "googlescholar",
+              "label": "Google Scholar 完整网址",
+              "type": "string"
+            },
+            {
+              "name": "orcid",
+              "label": "ORCID 完整网址",
+              "type": "string"
+            },
+            {
+              "name": "ssrn",
+              "label": "SSRN 完整网址",
+              "type": "string"
+            },
+            {
+              "name": "researchgate",
+              "label": "ResearchGate 完整网址",
+              "type": "string"
+            },
+            {
+              "name": "pubmed",
+              "label": "PubMed 完整网址",
+              "type": "string",
+              "description": "没有对应主页时可清空模板示例。"
+            },
+            {
+              "name": "github",
+              "label": "GitHub 用户名",
+              "type": "string",
+              "description": "填写用户名，例如 zhengshi-econ。"
+            },
+            {
+              "name": "linkedin",
+              "label": "LinkedIn 用户名",
+              "type": "string"
+            },
+            {
+              "name": "bluesky",
+              "label": "Bluesky 用户名",
+              "type": "string",
+              "description": "没有账号时可清空模板示例。"
+            },
+            {
+              "name": "zhihu",
+              "label": "知乎用户名",
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "homepage",
+      "label": "首页个人简介",
+      "type": "file",
+      "path": "_pages/about.md",
+      "format": "yaml-frontmatter",
+      "operations": {
+        "create": false,
+        "rename": false,
+        "delete": false
+      },
+      "fields": [
+        {
+          "name": "title",
+          "label": "页面标题",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "body",
+          "label": "个人简介正文",
+          "type": "rich-text",
+          "description": "在这里编辑自我介绍、研究方向、求职信息和公开链接。保存后会更新公开网站。",
+          "options": {
+            "format": "markdown",
+            "media": "images",
+            "switcher": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "papers",
+      "label": "研究论文",
+      "type": "collection",
+      "path": "_publications",
+      "format": "yaml-frontmatter",
+      "subfolders": false,
+      "filename": {
+        "template": "{year}-{month}-{day}-{primary}.md",
+        "field": "create"
+      },
+      "operations": {
+        "create": true,
+        "rename": false,
+        "delete": false
+      },
+      "view": {
+        "primary": "title",
+        "fields": [
+          "title",
+          "date",
+          "category"
+        ],
+        "sort": [
+          "date",
+          "title"
+        ],
+        "search": [
+          "title",
+          "venue",
+          "excerpt"
+        ],
+        "default": {
+          "sort": "date",
+          "order": "desc"
+        }
+      },
+      "fields": [
+        {
+          "name": "title",
+          "label": "论文标题",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "collection",
+          "label": "内容集合",
+          "type": "string",
+          "default": "publications",
+          "hidden": true
+        },
+        {
+          "name": "category",
+          "label": "论文分类",
+          "type": "select",
+          "required": true,
+          "default": "manuscripts",
+          "description": "对应网站当前已有的分类。接入后台不会改变这些分类。",
+          "options": {
+            "values": [
+              {
+                "name": "manuscripts",
+                "label": "期刊论文 / Journal Articles"
+              },
+              {
+                "name": "conferences",
+                "label": "会议论文 / Conference Papers"
+              },
+              {
+                "name": "books",
+                "label": "书籍 / Books"
+              }
+            ]
+          }
+        },
+        {
+          "name": "date",
+          "label": "论文日期",
+          "type": "date",
+          "required": true,
+          "options": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "venue",
+          "label": "期刊或会议名称",
+          "type": "string"
+        },
+        {
+          "name": "excerpt",
+          "label": "列表中的简短摘要",
+          "type": "text"
+        },
+        {
+          "name": "paperurl",
+          "label": "论文公开链接",
+          "type": "string",
+          "description": "填写 SSRN、期刊或公开 PDF 链接；在附件中上传 PDF 后可使用 /files/文件名.pdf。"
+        },
+        {
+          "name": "citation",
+          "label": "作者与引用信息",
+          "type": "text",
+          "description": "填写作者、年份、题目与发表信息。"
+        },
+        {
+          "name": "body",
+          "label": "论文详情与摘要",
+          "type": "rich-text",
+          "options": {
+            "format": "markdown",
+            "media": "images",
+            "switcher": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "cv",
+      "label": "CV 简历页面",
+      "type": "file",
+      "path": "_pages/cv.md",
+      "format": "yaml-frontmatter",
+      "operations": {
+        "create": false,
+        "rename": false,
+        "delete": false
+      },
+      "fields": [
+        {
+          "name": "title",
+          "label": "页面标题",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "body",
+          "label": "简历正文",
+          "type": "text",
+          "description": "此页含自动列出论文等内容的模板标记，使用文本框保留原样。可在正文加入 [Download CV](/files/cv.pdf)；先在“公开附件与 PDF”上传对应文件。"
+        }
+      ]
+    },
+    {
+      "name": "navigation",
+      "label": "顶部导航",
+      "type": "file",
+      "path": "_data/navigation.yml",
+      "format": "yaml",
+      "operations": {
+        "create": false,
+        "rename": false,
+        "delete": false
+      },
+      "fields": [
+        {
+          "name": "main",
+          "label": "导航项目",
+          "type": "object",
+          "list": true,
+          "fields": [
+            {
+              "name": "title",
+              "label": "显示文字",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "url",
+              "label": "链接地址",
+              "type": "string",
+              "required": true,
+              "description": "例如 /、/publications/、/cv/ 或完整外部网址。"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
