@@ -21,6 +21,10 @@ author_profile: true
   --paper-accent: var(--paper-publications);
   border-color: #d9b9c0; border-left-color: var(--paper-publications); background: #fffdfd;
 }
+.research-page .research-group--chinese {
+  --paper-accent: #5b2c83;
+  border-color: #d5c2e4; border-left-color: var(--paper-accent); background: #fcfaff;
+}
 .research-page .research-group--working {
   --paper-accent: #376b94;
   border-color: #d8e7f3; border-left-color: var(--paper-working); background: #f5faff;
@@ -85,8 +89,8 @@ author_profile: true
   {% endif %}
 
   {% assign papers = site.publications | sort: "date" | reverse %}
-  {% assign group_keys = "manuscripts,working,conferences,books,other" | split: "," %}
-  {% assign group_titles = "Publications,Working Papers,Conference Papers,Books,Other Research" | split: "," %}
+  {% assign group_keys = "manuscripts,chinese,working,conferences,books,other" | split: "," %}
+  {% assign group_titles = "Publications,Chinese Publications,Working Papers,Conference Papers,Books,Other Research" | split: "," %}
   {% for group_key in group_keys %}
     {% assign group_title = group_titles[forloop.index0] %}
     {% capture group_items %}
@@ -128,7 +132,7 @@ author_profile: true
       {% endfor %}
     {% endcapture %}
     {% assign group_items_trimmed = group_items | strip %}
-    {% if group_items_trimmed != "" or group_key == "manuscripts" or group_key == "working" %}
+    {% if group_items_trimmed != "" or group_key == "manuscripts" or group_key == "working" or group_key == "chinese" %}
       <section class="research-group research-group--{{ group_key }}{% if group_items_trimmed == "" %} research-group--empty{% endif %}" aria-labelledby="research-{{ group_key }}">
         <h2 class="research-heading" id="research-{{ group_key }}">{{ group_title }}</h2>
         {% if group_items_trimmed != "" %}<ol class="research-list">{{ group_items }}</ol>{% endif %}
