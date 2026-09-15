@@ -261,7 +261,7 @@
           "type": "select",
           "required": true,
           "default": "manuscripts",
-          "description": "工作论文显示在淡蓝色 Working Papers 区域，期刊论文显示在暗红色 Publications 区域。两个栏目始终显示。",
+          "description": "工作论文显示在淡蓝色 Working Papers 区域，期刊论文显示在暗红色 Publications 区域，中文论文显示在深紫色 Chinese Publications 区域。三个栏目始终显示。",
           "options": {
             "values": [
               {
@@ -271,6 +271,10 @@
               {
                 "name": "manuscripts",
                 "label": "期刊论文 / Publications"
+              },
+              {
+                "name": "chinese",
+                "label": "中文论文 / Chinese Publications"
               },
               {
                 "name": "conferences",
