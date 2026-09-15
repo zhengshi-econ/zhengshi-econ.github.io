@@ -5,7 +5,6 @@ category: manuscripts
 permalink: /publication/2015-10-01-paper-title-number-3
 date: 2024-09-02
 venue: Transformations in Business & Economics
-slidesurl: https://academicpages.github.io/files/slides3.pdf
 paperurl: https://www.zurnalai.vu.lt/TIBE/en/article/view/36697
 citation: Xinyao Yang, Zheng Shi, Chengxing Li
 ---
